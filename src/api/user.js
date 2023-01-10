@@ -14,7 +14,12 @@ export function getInfo() {
     method: 'post'
   })
 }
+export function getuserdetail(id) {
+  return request({
+    url: `/sys/user/${id}`
 
+  })
+}
 export function logout() {
 
 }

@@ -16,7 +16,7 @@ service.interceptors.request.use(config => {
 
 service.interceptors.response.use(response => {
   const { success, message, data } = response.data
-  console.log(response.data)
+
   if (success) {
     return data
   } else {

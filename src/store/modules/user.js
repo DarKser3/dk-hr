@@ -1,4 +1,4 @@
-import { getInfo, login } from '@/api/user'
+import { getInfo, getuserdetail, login } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 export default {
   namespaced: true,
@@ -15,7 +15,7 @@ export default {
       state.token = null
       removeToken()
     },
-    seruserinfo(state, result) {
+    setuserinfo(state, result) {
       state.userinfo = result
     }
   },
@@ -27,7 +27,11 @@ export default {
     },
     async getuserinfo(context) {
       const result = await getInfo()
-      context.commit('setuserinfo', result)
+      const bascinfo = await getuserdetail(result.userId)
+      const obj = { ...result, ...bascinfo }
+
+      context.commit('setuserinfo', obj)
+      return result
     }
   }
 
