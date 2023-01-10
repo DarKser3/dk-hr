@@ -1,3 +1,8 @@
+// 定义一些尺寸的样式
+.wp50 {
+  width: 50%
+}
+
 .infoPosin {
     position: relative;
   }
@@ -147,7 +152,7 @@
   .phoneInfo input[type="number"],
   .formInfo input [type="number"],
   .el-form-item input [type="number"] {
-    
+    -moz-appearance: textfield;
     line-height: 30px;
   }
   
