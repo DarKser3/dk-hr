@@ -1,5 +1,5 @@
 import { getInfo, getuserdetail, login } from '@/api/user'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken, settimekey } from '@/utils/auth'
 export default {
   namespaced: true,
   state: { token: getToken(),
@@ -17,6 +17,9 @@ export default {
     },
     setuserinfo(state, result) {
       state.userinfo = result
+    },
+    removeuserinfo(state) {
+      state.userinfo = {}
     }
   },
   actions: {
@@ -24,6 +27,7 @@ export default {
       const result = await login(data)
 
       context.commit('setToken', result)
+      settimekey()
     },
     async getuserinfo(context) {
       const result = await getInfo()
@@ -32,6 +36,10 @@ export default {
 
       context.commit('setuserinfo', obj)
       return result
+    },
+    logout(context) {
+      context.commit('removeToken')
+      context.commit('removeuserinfo')
     }
   }
 

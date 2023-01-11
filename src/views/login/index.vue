@@ -58,6 +58,7 @@
 <script>
 import { validMobile } from '@/utils/validate'
 import { mapActions } from 'vuex'
+
 export default {
   name: 'Login',
   data() {
@@ -109,7 +110,7 @@ export default {
         if (isOK) {
           try {
             this.loading = true
-            this['user/login'](this.loginForm)
+            await this['user/login'](this.loginForm)
             this.$router.push('/')
           } catch (error) {
             console.log(error)
@@ -156,7 +157,7 @@ $cursor: #fff;
       caret-color: $cursor;
 
       &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px $bg inset !important;
+        box-shadow: 0 0 0px 1000px rgba(255, 255, 255) inset !important;
         -webkit-text-fill-color: $cursor !important;
       }
     }
